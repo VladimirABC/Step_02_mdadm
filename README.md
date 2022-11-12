@@ -1,6 +1,6 @@
 #######
 
-Í îî Vagrant ôààî÷åÿ VM ñëóìàðäê
+На основе Vagrant файла разворачивается VM со следующим набором дисков
 ==
 sda         8:0    0   40G  0 disk   
 `-sda1      8:1    0   40G  0 part   /
@@ -10,16 +10,16 @@ sdd         8:48   0  250M  0 disk
 sde         8:64   0  250M  0 disk   
 sdf         8:80   0  250M  0 disk   
 ==
-È êîõíàíð÷òêsda1 
+Из которых изначально рабочий только sda1 
 
-Âñèpostinstall 
-1. Âñå óíëàñîëòí ïå
+В секции postinstall 
+1. В систему устанавливаются дополнительные пакеты
 yum install -y mdadm smartmontools hdparm gdisk
 
-2. Ñç¸òRAID Level 10 /dev/md0  è4-õñ /dev/sd{b,c,d,e}
+2. Создаётся RAID Level 10 /dev/md0  из 4-х дисков /dev/sd{b,c,d,e}
 
-3. Ñçíéîìêóÿ GPT ìê èîàñ ðåâ EXT4 FS
-Âåîàûçë ïñèþòêèå.
+3. Созданный том маркируется GPT меткой и создаются 5 разделов с EXT4 FS
+Все созданные разделы  присоединяются к системе.
 ===
 /dev/md0p1       91M  1.6M   83M   2% /raid/part1
 /dev/md0p2       92M  1.6M   84M   2% /raid/part2
@@ -28,4 +28,4 @@ yum install -y mdadm smartmontools hdparm gdisk
 /dev/md0p5       91M  1.6M   83M   2% /raid/part5
 ===
 
-########
+#########
